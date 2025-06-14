@@ -421,8 +421,8 @@
         this.position = position;
       }
       adjustment() {
-        if (this.position === 'front') return -5;
-        if (this.position === 'back') return +5;
+        if (this.position === 'front') return -1;
+        if (this.position === 'back') return +1;
         return 0;
       }
     }
@@ -450,7 +450,7 @@
       }
   
       if (lie === 'rough') adjustedDistance -= 5;
-      else if (lie === 'sand') adjustedDistance += 8;
+      else if (lie === 'sand') adjustedDistance += 6;
       else if (lie === 'tee') adjustedDistance -= 3;
   
       adjustedDistance += new PinPosition(pin).adjustment();
