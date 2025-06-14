@@ -1,0 +1,547 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta theme="#fffff" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Golf Club Recommender</title>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+
+
+
+</style>
+<body>
+
+<section id="poks">
+    <h3 id="sectionh3">Beginner Caddie</h3>
+<p id="sectionp">
+  This interactive tool helps new golfers choose the most suitable club for their next shot based on real-time inputs like distance to the pin, slope, wind conditions, lie type, and personal preferences.<br><br> By combining these variables with the user's own club distances, the system recommends an optimal club tailored to the current situation on the course, reducing misjudgements.</p>
+<br>
+<p id="sectionp2">Let's figure out what to hit with!</p>
+   
+<button id="next" onclick="hideSection('poks')">Next</button>    
+  </section>
+
+  <div class="step active" id="step0">
+    <div id="clubInputs" class="section">
+      <h3 id="ig" class="gradient-text">Set your club carry distances (meters):</h3>
+
+    <div class="tilt-container">
+        <div class="card" id="tiltCard">
+          <div class="card-inner">
+            <label>Driver: <input type="number" id="driver" value="250" />
+            </label><br />
+            <label>3-Wood: <input type="number" id="3-wood" value="230" /></label><br />
+            <label>5-Wood: <input type="number" id="5-wood" value="215" /></label><br />
+            <label>3-Iron: <input type="number" id="3-iron" value="210" /></label><br />
+            <label>4-Iron: <input type="number" id="4-iron" value="195" /></label><br />
+            <label>5-Iron: <input type="number" id="5-iron"  value="180" /></label><br />
+            <label>6-Iron: <input type="number" id="6-iron" value="165" /></label><br />
+            <label>7-Iron: <input type="number" id="7-iron" value="155" /></label><br />
+            <label>8-Iron: <input type="number" id="8-iron" value="145" /></label><br />
+            <label>9-Iron: <input type="number" id="9-iron" value="135" /></label><br />
+            <label>P-Wedge: <input type="number" id="P-Wedge" value="120" /></label><br />
+          </div>
+
+          </div>
+        </div>
+      </div>
+      <button id="next" onclick="nextStep()">Next</button>
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+<!--
+<div class="step active" id="step0">
+    <div id="clubInputs">
+      <h3 id="ig" class="gradient-text">Set your club carry distances (meters):</h3>
+      <label>Driver: <input type="number" id="driver" value="250" />
+      </label><br />
+      <label>3-Wood: <input type="number" id="3-wood" value="230" /></label><br />
+      <label>5-Wood: <input type="number" id="5-wood" value="215" /></label><br />
+      <label>3-Iron: <input type="number" id="3-iron" value="210" /></label><br />
+      <label>4-Iron: <input type="number" id="4-iron" value="195" /></label><br />
+      <label>5-Iron: <input type="number" id="5-iron"  value="180" /></label><br />
+      <label>6-Iron: <input type="number" id="6-iron" value="165" /></label><br />
+      <label>7-Iron: <input type="number" id="7-iron" value="155" /></label><br />
+      <label>8-Iron: <input type="number" id="8-iron" value="145" /></label><br />
+      <label>9-Iron: <input type="number" id="9-iron" value="135" /></label><br />
+      <label>P-Wedge: <input type="number" id="P-Wedge" value="120" /></label><br />
+    </div>
+    <button id="next" onclick="nextStep()">Next</button>
+</div>
+
+
+-->
+
+  <div class="step" id="step1">
+    <h3 id="ig" class="gradient-text">Distance metrics</h3>
+
+    <input  id="distance" type="number" placeholder="Distance to the pin" />
+    
+    <select id="hill" >
+      <option selected >Slope</option>
+
+      <option value="nohill" >No hill</option>
+      <option value="hill">Hill</option>
+    </select>
+
+    <select id="pin">
+      <option value="">Select the pin position</option>
+      <option value="front">Front</option>
+      <option value="middle">Middle</option>
+      <option value="back">Back</option>
+    </select>
+
+    <button id="next" onclick="nextStep()">Next</button>
+    <button id="back" onclick="prevStep()">Back</button>
+  </div>
+  
+  <div class="step" id="step2">
+
+    <h3 id="ig" class="gradient-text">Weather Variables</h3>
+
+
+    <input id="windSpeed" type="number" placeholder="Wind Speed (m/s)" />
+
+
+    <select id="windDir">
+      <option id="wsd" value="">Wind Direction</option>
+      <option value="leftw">Left
+      </option>
+      <option value="rightw">Right</option>
+      <option value="headw">Head</option>
+      <option value="tailw">Tail</option>
+    </select>
+    <button id="next" onclick="nextStep()">Next</button>
+    <button id="back" onclick="prevStep()">Back</button>
+  </div>
+  
+  <div class="step" id="step3">
+    <h3 id="ig" class="gradient-text">Specifics</h3>
+
+    <select id="lie">
+      <option value="">Choose Your Lie</option>
+      <option value="fairway">Fairway</option>
+      <option value="rough">Rough</option>
+      <option value="sand">Sand</option>
+      <option value="tee">Tee Box</option>
+    </select>
+
+    <select id="miss">
+      <option value="none" selected>Where would you rather miss</option>
+      <option value="left">Left</option>
+      <option value="right">Right</option>
+      <option value="short">Short</option>
+      <option value="long">Long</option>
+    </select>
+
+
+    <button id="next"  onclick="nextStep()">Next</button>
+    <button id="back" onclick="prevStep()">Back</button>
+  </div>
+  
+
+  <!--
+  <div class="step" id="step4">
+    <select id="pin">
+      <option value="">Select the pin position</option>
+      <option value="front">Front</option>
+      <option value="middle">Middle</option>
+      <option value="back">Back</option>
+    </select>
+    <button id="next" onclick="nextStep()">Next</button>
+    <button id="back" onclick="prevStep()">Back</button>
+  </div>
+  
+  <div class="step" id="step5">
+    <select id="hill">
+      <option value="nohill" selected>No hill</option>
+      <option value="hill">Hill</option>
+    </select>
+    <button id="next" onclick="nextStep()">Next</button>
+    <button id="back" onclick="prevStep()">Back</button>
+  </div>
+  
+  <div class="step" id="step6">
+    <select id="miss">
+      <option value="none" selected>Where would you rather miss</option>
+      <option value="left">Left</option>
+      <option value="right">Right</option>
+      <option value="short">Short</option>
+      <option value="long">Long</option>
+    </select>
+    <button id="next" onclick="nextStep()">Next</button>
+    <button id="back" onclick="prevStep()">Back</button>
+  </div>
+-->
+  <div class="step" id="step4">
+    <button id="calibrateBtn" onclick="nextStep()">Get Recommendation</button>
+    <button id="back" onclick="prevStep()">Back</button>
+  </div>
+
+
+  <div class="step" id="step5">
+    <h3 id="rch3">Recommended Club:</h3>
+    <pre id="result"></pre>
+
+    <img id="clubImage" src="" alt="">
+
+
+    <button id="back" onclick="prevStep()">Back</button>
+    <button id="so" onclick="goToStep(0)">Start Over</button> <pre id="result"></pre>
+  </div>
+
+
+  
+  <!--
+<script>
+  function prevStep() {
+    if (currentStep > 0) {
+      steps[currentStep].classList.remove('active');
+      steps[currentStep].style.display = 'none';
+      currentStep--;
+      steps[currentStep].classList.add('active');
+      steps[currentStep].style.display = 'block';
+    }
+  }
+
+
+</script>
+-->
+
+<script>
+  function hideSection(id) {
+    const section = document.getElementById(id);
+    if (section) {
+      section.style.display = "none";
+    }
+  }
+</script>
+
+<script>
+  const cards = document.querySelectorAll('.club-card');
+  let currentIndex = 0;
+
+  function showCard(index) {
+    cards.forEach((card, i) => {
+      card.classList.remove('active');
+      if (i === index) {
+        card.classList.add('active');
+      }
+    });
+  }
+
+  function swipeLeft() {
+    if (currentIndex < cards.length - 1) {
+      currentIndex++;
+      showCard(currentIndex);
+    }
+  }
+
+  function swipeRight() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      showCard(currentIndex);
+    }
+  }
+
+  const container = document.getElementById('swipeContainer');
+  let touchStartX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+
+  container.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (diff > 40) swipeLeft();     
+    else if (diff < -40) swipeRight(); 
+  });
+</script>
+
+
+
+
+
+<script>
+  let currentStep = 0;
+  const steps = document.querySelectorAll(".step");
+
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      if (i === index) {
+        step.classList.add("active");
+      } else {
+        step.classList.remove("active");
+      }
+    });
+  }
+
+  function nextStep() {
+    if (currentStep < steps.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+
+
+  function goToStep(targetStepIndex) {
+        if (targetStepIndex >= 0 && targetStepIndex < steps.length) {
+            showStep(targetStepIndex);
+        }
+    }
+
+  showStep(currentStep);
+</script>
+
+
+
+
+
+
+<!--
+
+<script>
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.step');
+
+    steps.forEach((step, i) => {
+        if (i !== 0) {
+            step.style.display = 'none';
+        }
+    });
+
+    function showStep(stepIndex) {
+        if (currentStep >= 0 && currentStep < steps.length) {
+            steps[currentStep].classList.remove('active');
+            steps[currentStep].style.display = 'none';
+        }
+
+        currentStep = stepIndex;
+        if (currentStep >= 0 && currentStep < steps.length) {
+            steps[currentStep].classList.add('active');
+            steps[currentStep].style.display = 'flex'; 
+        }
+    }
+
+    function nextStep() {
+        if (currentStep < steps.length - 1) {
+            showStep(currentStep + 1);
+        }
+    }
+  
+    function prevStep() {
+        if (currentStep > 0) {
+            showStep(currentStep - 1);
+        }
+    }
+
+    function goToStep(targetStepIndex) {
+        if (targetStepIndex >= 0 && targetStepIndex < steps.length) {
+            showStep(targetStepIndex);
+        }
+    }
+
+</script>
+-->
+  <!-- 
+  <script>
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.step');
+  
+    function nextStep() {
+      if (currentStep < steps.length - 1) {
+        steps[currentStep].classList.remove('active');
+        steps[currentStep].style.display = 'none';
+        currentStep++;
+        steps[currentStep].classList.add('active');
+        steps[currentStep].style.display = 'block';
+      }
+    }
+  
+    steps.forEach((step, i) => {
+      if (i !== 0) step.style.display = 'none';
+    });
+
+
+  </script>
+-->
+  <script>
+   
+    function getUserClubDistances() {
+      const clubs = [
+        "driver", "3-wood", "5-wood",
+        "3-iron", "4-iron", "5-iron", "6-iron", "7-iron",
+        "8-iron", "9-iron", "P-Wedge"
+      ];
+      let distances = {};
+      clubs.forEach(club => {
+        const val = parseFloat(document.getElementById(club).value);
+        distances[club] = isNaN(val) ? 0 : val;
+      });
+      return distances;
+    }
+  
+    class Miss {
+      constructor(type) {
+        this.type = type;
+      }
+      penalty() {
+        if (this.type === 'long') return +5;
+        if (this.type === 'short') return -5;
+        return 0;
+      }
+    }
+  
+    class PinPosition {
+      constructor(position) {
+        this.position = position;
+      }
+      adjustment() {
+        if (this.position === 'front') return -5;
+        if (this.position === 'back') return +5;
+        return 0;
+      }
+    }
+  
+    class HillPosition {
+      constructor(position) {
+        this.position = position;
+      }
+      hill() {
+        return this.position === 'hill' ? 4 : 0;
+      }
+    }
+  
+    function getClubRecommendation({
+      distance, windType, windSpeed, lie, pin, hill, miss, clubDistances
+    }) {
+      let adjustedDistance = distance;
+      let windAdjustment = windSpeed < 5 ? 2 : (windSpeed < 10 ? 7 : 12);
+  
+      switch (windType) {
+        case 'headw': adjustedDistance += windAdjustment; break;
+        case 'tailw': adjustedDistance -= windAdjustment; break;
+        case 'leftw':
+        case 'rightw': adjustedDistance += windAdjustment * 0.5; break;
+      }
+  
+      if (lie === 'rough') adjustedDistance -= 5;
+      else if (lie === 'sand') adjustedDistance += 8;
+      else if (lie === 'tee') adjustedDistance -= 3;
+  
+      adjustedDistance += new PinPosition(pin).adjustment();
+      adjustedDistance += new Miss(miss).penalty();
+      adjustedDistance += new HillPosition(hill).hill();
+  
+      let bestClub = null;
+      let minDiff = Infinity;
+      for (const [club, clubDist] of Object.entries(clubDistances)) {
+        const diff = Math.abs(clubDist - adjustedDistance);
+        if (diff < minDiff) {
+          minDiff = diff;
+          bestClub = club;
+        }
+      }
+  
+      return {
+        recommendation: bestClub,
+      
+        adjustedDistance: Math.round(adjustedDistance)
+      };
+    }
+
+    document.getElementById("calibrateBtn").addEventListener("click", () => {
+  const windType = document.getElementById("windDir").value;
+  const windSpeed = parseFloat(document.getElementById("windSpeed").value);
+  const distance = parseFloat(document.getElementById("distance").value);
+  const lie = document.getElementById("lie").value;
+  const pin = document.getElementById("pin").value;
+  const miss = document.getElementById("miss").value;
+  const hill = document.getElementById("hill").value;
+
+  const clubDistances = getUserClubDistances();
+
+  if (!isNaN(windSpeed) && !isNaN(distance)) {
+    const recommendation = getClubRecommendation({
+      distance, windType, windSpeed, lie, pin, miss, hill, clubDistances
+    });
+
+    document.getElementById("result").textContent =
+      `Recommended club: ${recommendation.recommendation}
+Adjusted distance to shoot: ${recommendation.adjustedDistance}m
+`;
+
+    const image = document.getElementById("clubImage");
+    const cleanedClub = recommendation.recommendation.toLowerCase().replace(/[\s\-]/g, '');
+    image.src = `images/${cleanedClub}.jpg`;
+    image.alt = recommendation.recommendation;
+    image.style.display = 'block';
+
+  } else {
+    document.getElementById("result").textContent =
+      'Make sure to fill in all required fields correctly.';
+  }
+});
+  
+
+    /*
+    document.getElementById("calibrateBtn").addEventListener("click", () => {
+      const windType = document.getElementById("windDir").value;
+      const windSpeed = parseFloat(document.getElementById("windSpeed").value);
+      const distance = parseFloat(document.getElementById("distance").value);
+      const lie = document.getElementById("lie").value;
+      const pin = document.getElementById("pin").value;
+      const miss = document.getElementById("miss").value;
+      const hill = document.getElementById("hill").value;
+  
+      const clubDistances = getUserClubDistances();
+
+
+
+
+  
+      if (!isNaN(windSpeed) && !isNaN(distance)) {
+        const recommendation = getClubRecommendation({
+          distance, windType, windSpeed, lie, pin, miss, hill, clubDistances
+        });
+  
+        document.getElementById("result").textContent =
+          `Recommended club: ${recommendation.recommendation}
+  Adjusted distance to shoot: ${recommendation.adjustedDistance}m
+  `;
+      } else {
+        document.getElementById("result").textContent =
+          'Please fill in all required fields correctly.';
+      }
+    });
+    */
+  </script>
+
+
+    <script src="scritps.js"></script>
+</body>
+</html>
